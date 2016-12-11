@@ -3,15 +3,12 @@ require 'pry'
 class CharacterMap
 
   def characters
-    {"a" = > 1, }
+   [('a'..'z').to_a + ('0'..'9').to_a, " ", ".", ",", ('A'..'Z').to_a, "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "<", ">", ";", ":", "/", "?", "\\", "|"].flatten!
   end
+
+  #def official_map
+  #  official_map = characters.zip(1..85)
+  #end
+ 
 end
 
-
- #lowercase letters, then the numbers, then space, then period, then comma.
-
-#  all capital letters
-# all lowercase letters
-# all numbers
-# spaces
-# these symbols: !@#$%^&*()[],.<>;:/?\|
