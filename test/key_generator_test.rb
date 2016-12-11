@@ -20,4 +20,5 @@ class KeyGeneratorTest < Minitest::Test
     k2 = KeyGenerator.new
      refute k1 == k2
   end
+
 end

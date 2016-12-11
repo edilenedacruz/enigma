@@ -24,4 +24,5 @@ class OffsetGeneratorTest < Minitest::Test
       offset = OffsetGenerator.new
       assert_equal 4, offset.last_four.count
     end
+
 end
