@@ -5,26 +5,29 @@ require 'pry'
 
 class EncryptorTest < Minitest::Test
 
-    def test_does_encryptor_exist
-        encryptor = Encryptor.new
-        assert_instance_of Encryptor, encryptor
-    end
+  def test_does_encryptor_exist
+    encryptor = Encryptor.new
+    assert_instance_of Encryptor, encryptor
+  end
 
-    def test_does_encryptor_receive_message
-        encryptor = Encryptor.new("Turing")
-        assert_equal "Turing", encryptor.input
-    end
+  def test_it_receives_message_input
+    encryptor = Encryptor.new("Turing")
+    assert_equal "Turing", encryptor.input
+  end
 
-    def test_does_message_break_down_into_single_characters
-        encryptor = Encryptor.new("Turing")
-        assert_equal ["T", "u", "r", "i", "n", "g"], encryptor.split_message("Turing")    
-    end
+  def test_it_can_access_key_value
+    encryptor = Encryptor.new("Turing")
+    assert_equal 5, encryptor.key.length
+  end
 
-    def test_it_can_encrypt_message
-        encryptor = Encryptor.new()
-        assert_equal [], encryptor.encrypt_message
-    end
+  def test_it_can_access_offset_value
+    encryptor = Encryptor.new("Turing")
+    assert_equal 4, encryptor.offset.length
+  end
 
-end 
-
-
+  def test_it_standard_message_has_same_length_of_encrypted
+    e1 = Encryptor.new.encrypted_message("Dog").length
+    e2 = Encryptor.new.encrypted_message("cat").length
+    assert e1 == e2
+  end
+end
