@@ -4,12 +4,13 @@ require_relative 'key_generator'
 require_relative 'offset_generator'
 
 class Encryptor
-  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d
+  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
   def initialize(input = nil)
     @input = input
     @standard = CharacterMap.new.characters
     @key = KeyGenerator.new.random_key
     @offset = OffsetGenerator.new.last_four
+    @date = OffsetGenerator.new.date
     total_rotation
   end
 
@@ -48,3 +49,6 @@ class Encryptor
   end
 
 end
+#
+# e = Encryptor.new
+# p e.encrypted_message("aaaaaaaa")
