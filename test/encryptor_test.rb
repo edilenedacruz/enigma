@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/encryptor'
@@ -25,9 +27,9 @@ class EncryptorTest < Minitest::Test
     assert_equal 4, encryptor.offset.length
   end
 
-  def test_it_standard_message_has_same_length_of_encrypted
-    e1 = Encryptor.new.encrypted_message("Dog").length
-    e2 = Encryptor.new.encrypted_message("cat").length
-    assert e1 == e2
-  end
+  # def test_it_standard_message_has_same_length_of_encrypted
+  #   e1 = Encryptor.new.encrypted_message("dogs").length
+  #   e2 = Encryptor.new.encrypted_message("cats").length
+  #   assert e1 == e2
+  # end
 end
