@@ -6,11 +6,11 @@ class OffsetGenerator
   end
 
   def date
-    @date = Time.now.strftime("%d%m%y").to_i
+    @date = Time.now.strftime("%d%m%y")
   end
 
   def last_four
-    squared = date ** 2
+    squared = date.to_i ** 2
     @offset = squared.to_s.chars[-4..-1]
   end
 end

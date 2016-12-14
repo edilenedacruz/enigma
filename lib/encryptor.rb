@@ -3,6 +3,7 @@ require_relative 'character_map'
 require_relative 'key_generator'
 require_relative 'offset_generator'
 
+
 class Encryptor
   attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
   def initialize(input = nil)
@@ -10,7 +11,7 @@ class Encryptor
     @standard = CharacterMap.new.characters
     @key = KeyGenerator.new.random_key
     @offset = OffsetGenerator.new.last_four
-    @date = OffsetGenerator.new.date
+    @date = OffsetGenerator.new.date.to_i
     total_rotation
   end
 
@@ -23,24 +24,15 @@ class Encryptor
 
   def encrypted_message(input)
     encrypted_final = input.chars.map.with_index do |character, index|
-      if index % 4 == 0
-        rotation = a
-        encrypt_letter(character, rotation)
-      elsif index % 4 == 1
-        rotation = b
-        encrypt_letter(character, rotation)
-      elsif index % 4 == 2
-        rotation = c
-        encrypt_letter(character, rotation)
-      elsif index % 4 == 3
-        rotation = d
-        encrypt_letter(character, rotation)
+      case
+        when index % 4 == 0 then rotation = a
+        when index % 4 == 1 then rotation = b
+        when index % 4 == 2 then rotation = c
+        when index % 4 == 3 then rotation = d
       end
       encrypt_letter(character, rotation)
-    end
-    encrypted_final.join
+    end.join
   end
-
 
   def encrypt_letter(character, rotation)
     rotated_letters = standard.rotate(rotation)
@@ -49,6 +41,6 @@ class Encryptor
   end
 
 end
-#
+
 # e = Encryptor.new
 # p e.encrypted_message("aaaaaaaa")

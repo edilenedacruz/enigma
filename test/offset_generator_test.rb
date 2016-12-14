@@ -14,7 +14,7 @@ class OffsetGeneratorTest < Minitest::Test
 
   def test_it_can_obtain_todays_date
       offset = OffsetGenerator.new
-      assert_instance_of Time, offset.date
+      assert_equal String, offset.date.class
   end
 
   def test_date_is_a_six_digit_number

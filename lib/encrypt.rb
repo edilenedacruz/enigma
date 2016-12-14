@@ -1,8 +1,5 @@
 require './lib/encryptor'
 
-# class Encrypt
-#
-#   def receiver
     message = File.open(ARGV[0], "r")
     input = message.read
     message.close
@@ -13,8 +10,5 @@ require './lib/encryptor'
     outgoing_message = File.open(ARGV[1], "w")
     outgoing_message.write(cyphered)
     outgoing_message.close
-#
-#   end
-#
-# end
+
 puts "Created '#{ARGV[1]}' with the key #{encrypting.key} and date #{encrypting.date}"

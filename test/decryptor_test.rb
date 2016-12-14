@@ -27,4 +27,8 @@ class DecryptorTest < Minitest::Test
     assert_equal 4, decryptor.offset.length
   end
 
+  def test_decryptor_can_take_any_key
+    decryptor = Decryptor.new("Ra9jl&", "12345")
+    assert_equal "12345", decryptor.key
+  end
 end
