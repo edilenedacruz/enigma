@@ -29,7 +29,7 @@ class Crack
   end
 end
 
-c = Crack.new
-c.read_file
-c.crack_message
-c.print_message
+# c = Crack.new
+# c.read_file
+# c.crack_message
+# c.print_message

@@ -19,16 +19,16 @@ class EncryptTest < Minitest::Test
 
   def test_it_reads_a_file
     encrypt = Encrypt.new
-    result = "Turing"
+    expected = "Turing"
     ARGV[0] = "message.txt"
-    assert result, encrypt.read_file
+    assert expected, encrypt.read_file
   end
 
   def test_it_encrypts_a_file
     encrypt = Encrypt.new
-    result = "6PM testing ..end.."
+    expected = "6PM testing ..end.."
     ARGV[1] = "encrypted.txt"
-    assert result, encrypt.encrypt_message
+    assert expected, encrypt.encrypt_message
   end
 
 end

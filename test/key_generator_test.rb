@@ -18,8 +18,9 @@ class KeyGeneratorTest < Minitest::Test
   end
 
   def test_key_is_random
-    k1 = KeyGenerator.new
-    k2 = KeyGenerator.new
+    k1 = KeyGenerator.new.random_key
+    k2 = KeyGenerator.new.random_key
+
     refute k1 == k2
   end
 

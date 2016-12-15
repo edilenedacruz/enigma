@@ -28,7 +28,7 @@ class Encrypt
   end
 end
 
-e = Encrypt.new
-e.read_file
-e.encrypt_message
-e.print_message
+# e = Encrypt.new
+# e.read_file
+# e.encrypt_message
+# e.print_message

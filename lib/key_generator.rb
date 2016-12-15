@@ -13,5 +13,4 @@ class KeyGenerator
     end
     @key = random_key.join
   end
-
 end

@@ -28,7 +28,7 @@ class Decrypt
   end
 end
 
-d = Decrypt.new
-d.read_file
-d.decrypt_message
-d.print_message
+# d = Decrypt.new
+# d.read_file
+# d.decrypt_message
+# d.print_message
