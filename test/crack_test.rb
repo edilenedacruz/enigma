@@ -8,19 +8,16 @@ require 'pry'
 class CrackTest < Minitest::Test
 
   def test_class_exists
-    # skip
     c = Crack.new("*UlrwiJt5TJN", 141216)
     assert_instance_of Crack, c
   end
 
   def test_does_it_have_access_to_message
-    # skip
     c = Crack.new("*UlrwiJt5TJN", 141216)
     assert_equal "*UlrwiJt5TJN", c.input
   end
 
   def test_it_reads_a_file
-    # skip
     c = Crack.new("*UlrwiJt5TJN", 141216)
     expected = "Peace..end.."
     ARGV[0] = "encrypted_test.txt"
@@ -28,7 +25,6 @@ class CrackTest < Minitest::Test
   end
 
   def test_it_can_access_date
-    # skip
     c = Crack.new("*UlrwiJt5TJN", 141216)
     assert_equal 141216, c.date
   end

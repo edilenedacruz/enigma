@@ -15,7 +15,7 @@ class Encrypt
   end
 
   def encrypt_message
-    @encrypting = Encryptor.new(input)
+    @encrypting = Encryptor.new
     cyphered = encrypting.encrypted_message(input)
     outgoing_message = File.open(ARGV[1], "w")
     outgoing_message.write(cyphered)
@@ -28,7 +28,7 @@ class Encrypt
   end
 end
 
-# e = Encrypt.new
-# e.read_file
-# e.encrypt_message
-# e.print_message
+e = Encrypt.new
+e.read_file
+e.encrypt_message
+e.print_message

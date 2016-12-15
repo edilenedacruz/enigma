@@ -8,10 +8,9 @@ class Encryptor
   def initialize(input = nil, key = nil)
     @input = input
     @standard = CharacterMap.new.characters
-    @key = key.to_s || @key = KeyGenerator.new.random_key
-    # @key = "91203"
+    @key = KeyGenerator.new.random_key
     @offset = OffsetGenerator.new.last_four
-    @date = date.to_i || @date = @offset.date.to_i
+    @date = OffsetGenerator.new.date.to_i
     total_rotation
   end
 

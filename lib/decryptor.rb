@@ -9,9 +9,8 @@ class Decryptor
     @input = input
     @standard = CharacterMap.new.characters
     @key = key.to_s || @key = KeyGenerator.new.random_key
-    # @key = key.to_s
     @offset = OffsetGenerator.new.last_four
-    @date = date.to_i || @date = @offset.date.to_i
+    @date = date.to_i || @date = OffsetGenerator.new.date.to_i
     decryption_rotation
   end
 
@@ -47,6 +46,3 @@ end
 # p d.decrypted_message("eu6zqxvi8t1ccnl0c3q09")
 # p d.key
 # p d.date
-
-#Created 'enc_msg.txt' with the key 68861 and date 141216
-#eu6zqxvi8t1ccnl0c3q09

@@ -20,8 +20,8 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_message_when_key_is_provided
     e = Enigma.new
     e.encrypt("Sushi!", 91203)
-    expected = "!0xnq&"
-    assert_equal "!0xnq&", e.encrypt("Sushi!")
+    expected = "*,Eqx'"
+    assert_equal "*,Eqx'", e.encrypt("Sushi!", 91203)
   end
 
   def test_it_can_decrypt_when_key_and_date_are_provided
@@ -40,12 +40,6 @@ class EnigmaTest < Minitest::Test
     e = Enigma.new
     e.crack("#6FGAwF)MQXn2vXH", 141216)
     assert_equal "Not yet! ..end..", e.crack("#6FGAwF)MQXn2vXH", 141216)
-  end
-
-  def test_it_can_crack_without_date_input
-    e = Enigma.new
-    e.crack("#6FGAwF)MQXn2vXH")
-    assert_equal "Not yet! ..end..", e.crack("Not yet! ..end..")
   end
 
 end
