@@ -5,13 +5,12 @@ require_relative 'key_generator'
 
 class Decryptor
   attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
-  def initialize(input = nil, key = nil)
+  def initialize(input = nil, key = nil, date = nil)
     @input = input
     @standard = CharacterMap.new.characters
-    @key = key ||  KeyGenerator.new.random_key
-    # @key = KeyGenerator.new.random_key
+    @key = key.to_s || KeyGenerator.new.random_key
     @offset = OffsetGenerator.new.last_four
-    @date = OffsetGenerator.new.date.to_i
+    @date = date.to_i || OffsetGenerator.new.date.to_i
     decryption_rotation
   end
 
@@ -34,7 +33,6 @@ class Decryptor
     end.join
   end
 
-
   def decrypt_letter(character, rotation)
     rotated_letters = standard.rotate(-rotation)
     dencrypted_pair = Hash[standard.zip(rotated_letters)]
@@ -43,5 +41,10 @@ class Decryptor
 
 end
 #
-# d = Decryptor.new
-# p d.decrypted_message("49ztsswa5ws0.tbdqkbeqlbgqnbnrzrsrt")
+# d = Decryptor.new("eu6zqxvi8t1ccnl0c3q09", 68861, 141216)
+# p d.decrypted_message("eu6zqxvi8t1ccnl0c3q09")
+# p d.key
+# p d.date
+
+#Created 'enc_msg.txt' with the key 68861 and date 141216
+#eu6zqxvi8t1ccnl0c3q09

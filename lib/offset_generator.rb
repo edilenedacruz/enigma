@@ -14,6 +14,3 @@ class OffsetGenerator
     @offset = squared.to_s.chars[-4..-1]
   end
 end
-
-# o = OffsetGenerator.new
-# o.last_four

@@ -6,7 +6,7 @@ require_relative 'offset_generator'
 
 class Encryptor
   attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
-  def initialize(input = nil)
+  def initialize(input = nil, key = nil)
     @input = input
     @standard = CharacterMap.new.characters
     @key = KeyGenerator.new.random_key
@@ -23,7 +23,7 @@ class Encryptor
   end
 
   def encrypted_message(input)
-    encrypted_final = input.chars.map.with_index do |character, index|
+    encrypted_final = input.to_s.chars.map.with_index do |character, index|
       case
         when index % 4 == 0 then rotation = a
         when index % 4 == 1 then rotation = b
@@ -41,6 +41,3 @@ class Encryptor
   end
 
 end
-
-# e = Encryptor.new
-# p e.encrypted_message("aaaaaaaa")

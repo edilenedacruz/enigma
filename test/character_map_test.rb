@@ -19,12 +19,12 @@ class CharacterMapTest < Minitest::Test
 
   def test_it_has_85_characters
     map = CharacterMap.new
-    assert_equal 85, map.characters.count
+    assert_equal 84, map.characters.count
   end
 
-  #def test_official_map_is_a_hash
-  #  map = CharacterMap.new
-  #  assert_equal Hash, map.official_map.class
-  #end
+  def test_official_map_is_an_array
+   map = CharacterMap.new
+   assert_equal Array, map.characters.class
+  end
 
 end
