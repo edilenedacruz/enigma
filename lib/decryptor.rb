@@ -4,7 +4,7 @@ require_relative 'offset_generator'
 require_relative 'key_generator'
 
 class Decryptor
-  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
+  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date, :decrypted_final
   def initialize(input = nil, key = nil, date = nil)
     @input = input
     @standard = CharacterMap.new.characters
@@ -22,7 +22,7 @@ class Decryptor
   end
 
   def decrypted_message(input)
-    decrypted_final = input.chars.map.with_index do |character, index|
+    @decrypted_final = input.chars.map.with_index do |character, index|
       case
         when index % 4 == 0 then rotation = a
         when index % 4 == 1 then rotation = b
@@ -30,7 +30,8 @@ class Decryptor
         when index % 4 == 3 then rotation = d
       end
       decrypt_letter(character, rotation)
-    end.join
+    end
+    @decrypted_final.join
   end
 
   def decrypt_letter(character, rotation)

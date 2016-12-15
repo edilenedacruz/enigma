@@ -1,36 +1,35 @@
+require_relative 'cracker'
 require 'pry'
-require_relative 'decryptor'
-require_relative 'offset_generator'
 
 class Crack
-  attr_reader :input, :date, :key, :d
-  def initialize(date = nil)
-    # @input = input
-    @date = date || OffsetGenerator.new.date.to_i
+  attr_reader :input, :cracking, :date
+  def initialize(input = nil, date = nil)
+    @date = date
+    @input = input
   end
 
-  def crack(input)
-    99999.times do |key|
-      #binding.pry
-      key = key.to_s.rjust(5, "0")
-      d = Decryptor.new(input, key, date)
-      cracked = d.decrypted_message(input)
-      return [cracked, key] if cracked[-7..-1] == "..end.."
-    end
+  def read_file
+    message = File.open(ARGV[0], "r")
+    @input = message.read
+    message.close
+    message
+  end
+
+  def crack_message
+    @cracking = Cracker.new(input, ARGV[2])
+    cracked = cracking.crack(input)
+    outgoing_message = File.open(ARGV[1], "w")
+    outgoing_message.write(cracked)
+    outgoing_message.close
+    outgoing_message
+  end
+
+  def print_message
+    puts "Created '#{ARGV[1]}' with the key #{cracking.key.to_i} and date #{cracking.date}"
   end
 end
-#   def crack(input)
-#     key = 0
-#     cracked = ""
-#     until cracked[-7..-1] == "..end.." do
-#       # binding.pry
-#       d = Decryptor.new(input, key, date)
-#        cracked = d.decrypted_message(input)
-#        key += 1
-#   end
-#   cracked
-# end
-# end
 
-c = Crack.new(121416)
-p c.crack("Oz )vSx;wSb?4PO>r8v1BTvegTP")
+c = Crack.new
+c.read_file
+c.crack_message
+c.print_message

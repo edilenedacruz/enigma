@@ -2,22 +2,26 @@ require 'simplecov'
 SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'pry'
 require './lib/crack'
+require 'pry'
 
 class CrackTest < Minitest::Test
 
-  def test_its_class_exits
-    c = Crack.new("49ztsswa5ws0.tbdqkbeqlbgqnbnrzrsrt", 121316)
+  def test_class_exists
+    c = Crack.new("*UlrwiJt5TJN", 141216)
     assert_instance_of Crack, c
   end
 
-  def test_it_can_decript_a_message_with_given_date
-    c = Crack.new("49ztsswa5ws0.tbdqkbeqlbgqnbnrzrsrt", 121316)
-    decrypted_message = "love, symbols. 1 2 2 3 4 5 ..end.."
-    assert_equal decrypted_message, c.crack
-
+  def test_does_it_have_access_to_message
+    c = Crack.new("*UlrwiJt5TJN", 141216)
+    assert_equal "*UlrwiJt5TJN", c.input
   end
 
+  def test_it_reads_a_file
+    c = Crack.new("*UlrwiJt5TJN", 141216)
+    result = "Peace..end.."
+    ARGV[0] = "encrypted_test.txt"
+    assert result, c.read_file
+  end
 
 end

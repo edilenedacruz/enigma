@@ -33,4 +33,9 @@ class EncryptorTest < Minitest::Test
     assert e1 == e2
   end
 
+  def test_it_can_encrypt_message
+    encryptor = Encryptor.new("Turing")
+    assert_equal 6, encryptor.encrypted_message("Turing").length
+  end
+
 end

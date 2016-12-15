@@ -24,11 +24,11 @@ class Encrypt
   end
 
   def print_message
-    puts "Created '#{ARGV[1]}' with the key #{encrypting.key} and date #{encrypting.date}"
+    puts "Created '#{ARGV[1]}' with the key #{encrypting.key.to_i} and date #{encrypting.date}"
   end
 end
 
-# e = Encrypt.new
-# e.read_file
-# e.encrypt_message
-# e.print_message
+e = Encrypt.new
+e.read_file
+e.encrypt_message
+e.print_message

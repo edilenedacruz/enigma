@@ -3,9 +3,8 @@ require_relative 'character_map'
 require_relative 'key_generator'
 require_relative 'offset_generator'
 
-
 class Encryptor
-  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date
+  attr_reader :input, :standard, :key, :offset, :a, :b, :c, :d, :date, :encrypted_final
   def initialize(input = nil, key = nil)
     @input = input
     @standard = CharacterMap.new.characters
@@ -23,7 +22,7 @@ class Encryptor
   end
 
   def encrypted_message(input)
-    encrypted_final = input.to_s.chars.map.with_index do |character, index|
+    @encrypted_final = input.to_s.chars.map.with_index do |character, index|
       case
         when index % 4 == 0 then rotation = a
         when index % 4 == 1 then rotation = b
@@ -31,7 +30,8 @@ class Encryptor
         when index % 4 == 3 then rotation = d
       end
       encrypt_letter(character, rotation)
-    end.join
+    end
+    @encrypted_final.join
   end
 
   def encrypt_letter(character, rotation)
